@@ -1,0 +1,301 @@
+openapi: 3.0.0
+info:
+  title: Book My Ticket
+  description: >
+
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:8080/
+paths:
+  /api/movie/{id}:
+    description: for read,update,delete operation on movie
+    get:
+      description: for read movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 76
+      responses:
+        '200':
+          description: Request Successful
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Movie not found
+
+    put:
+      description: update movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 76
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Sita Ramam"
+                caption:
+                  type: string
+                  example: "On a letter-delivering task, Afreen learns of a 20-year-old romance set amidst a war. Her quest to t ..."
+                rating:
+                  type: integer
+                  example: 3
+                tags:
+                  type: string
+                  example: "Romance, Drama, Hindi, 2022"
+      responses:
+        '200':
+          description: Successfuly updated
+        '404':
+          description: Movie not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+    delete:
+      description: delete movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 76
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Movie not found
+        '500':
+          description: Intenal Server Error
+
+  /api/movie:
+    description: create operation on movie
+    post:
+      description: create new movie
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Sita Ramam"
+                caption:
+                  type: string
+                  example: "On a letter-delivering task, Afreen learns of a 20-year-old romance set amidst a war. Her quest to t ..."
+                rating:
+                  type: integer
+                  example: 3
+                tags:
+                  type: string
+                  example: "Romance, Drama, Hindi, 2022"
+      responses:
+        '201':
+          description: Successfully Created
+        '409':
+          description: Movie already exist
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+  /api/venue/{id}:
+    description: for  read, update, delete venue
+    get:
+      description: read venue
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 21
+      responses:
+        '200':
+          description: Request Successful
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Venue not found
+
+    put:
+      description: update venue
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 21
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Victory
+                caption:
+                  type: string
+                  example: "From Romance to Action: We ve Got It All"
+                capacity:
+                  type: integer
+                  example: 200
+                address:
+                  type: string
+                  example: "Opp Mandvi Bus Stand, M.g.road, Opp Mandvi Bus Stand, M.g.road"
+                city:
+                  type: string
+                  example: "vadodara"
+      responses:
+        '200':
+          description: Successfuly updated
+        '404':
+          description: Venue not found
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+    delete:
+      description: delete venue
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 21
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Venue not found
+        '500':
+          description: Intenal Server Error
+
+  /api/venue:
+    description: create operation
+    post:
+      description: create new venue
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Victory
+                caption:
+                  type: string
+                  example: "From Romance to Action: We ve Got It All"
+                capacity:
+                  type: integer
+                  example: 200
+                address:
+                  type: string
+                  example: "Opp Mandvi Bus Stand, M.g.road, Opp Mandvi Bus Stand, M.g.road"
+                city:
+                  type: string
+                  example: "vadodara"
+      responses:
+        '201':
+          description: Successfully Created
+        '409':
+          description: Venue already exist
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
+
+  /api/show/{mname}/{vname}:
+    description: create, delete show
+    get:
+      description: nill
+      parameters:
+        - in: path
+          name: mname
+          required: true
+          schema:
+            type: string
+            example: "Sita Ramam"
+        - in: path    
+          name: vname
+          required: true
+          schema:
+            type: string 
+            example: "Victory"
+      responses:
+        '200':
+          description: Request Successful
+        '500':
+          description: Internal Server Error
+        '404':
+          description: Show not found
+
+  /api/show/{id}:
+    description: delete operation on show 
+    delete:
+      description: delete show
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            example: 1651
+      responses:
+        '200':
+          description: Successfully Deleted
+        '404':
+          description: Show not found
+        '500':
+          description: Intenal Server Error
+
+  /api/show:
+    description: create operation on show
+    post:
+      description: create show
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mname:
+                  type: string
+                  example: "Sita Ramam"
+                vname:
+                  type: string
+                  example: "Victory"
+                price:
+                  type: integer
+                  example: 370
+                date:
+                  type: string
+                  example: "2023-04-29"
+                start_time:
+                  type: string
+                  example: "13:40"
+                end_time:
+                  type: string
+                  example: "15:10"
+      responses:
+        '201':
+          description: Successfully Created
+        '500':
+          description: Internal Server Error
+        '400':
+          description: Bad request
